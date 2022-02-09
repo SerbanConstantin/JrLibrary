@@ -1,0 +1,76 @@
+<% if user_signed_in? %>
+
+<table class= "table table-striped table-hover table-bordered" >
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Read</th>
+      <th>Book Rating</th>
+      
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jrbooks.each do |jrbook| %>
+
+      <% if jrbook.user == current_user %>
+
+      <% if jrbook.read %>
+
+      <tr class="table-secondary ">
+        <td class="striker"><%= link_to jrbook.name, edit_jrbook_path(jrbook)%></td> 
+            <td><%= jrbook.author %></td>
+            <td>
+
+            <center>
+              <%= form_for(jrbook) do |f| %>
+              <%= f.text_field :name, type:'hidden' %>
+              <%= f.text_field :author, type:'hidden' %>
+              <%= f.check_box :read, :checked => false, :style => 'visibility: hidden' %>
+              <%= f.submit "Read", class: 'btn btn-warning btn btn-sm' %>
+ 
+            <% end %>
+          </center>
+        </td<>
+        <td><%= jrbook.book_rating %></td>
+        <td><%= button_to 'Delete', jrbook, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm" %></td>
+      </tr>
+
+      <% else %>
+
+      <tr>
+            <td><%= link_to jrbook.name, edit_jrbook_path(jrbook)%></td>
+            <td><%= jrbook.author %></td>
+            <td>
+              <center>
+                <%= form_for(jrbook) do |f| %>
+                <%= f.text_field :name, type:'hidden' %>
+                <%= f.text_field :author, type:'hidden' %>
+                <%= f.check_box :read, :checked => true, :style => 'visibility: hidden' %>
+                <%= f.submit "Not Read", class: 'btn btn-warning btn btn-sm' %>
+
+                <% end %>
+              </center>
+            </td<>
+            <td><%= jrbook.book_rating %></td>
+            <td><%= button_to 'Delete', jrbook, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm"%></td>
+          </tr>
+
+      <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add New Book', new_jrbook_path, class:"btn btn-dark" %>
+
+<% else %>
+
+<h1>Home</h1>
+<p>Webpage under construction</p>
+
+<% end %>

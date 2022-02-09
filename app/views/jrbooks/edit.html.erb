@@ -1,0 +1,17 @@
+<div class="card">
+    <div class="card-header">
+    <h4>Editing Book</h4>
+</div>
+<div class="card-body">
+
+    <%= render 'form', jrbook: @jrbook %>
+
+</div>
+</div>
+    <br/>
+
+<%= link_to 'Show', @jrbook, class:"btn btn-dark" %> 
+<%= link_to 'Back', jrbooks_path, class:"btn btn-dark" %>
+<br/>
+<br/>
+<%= button_to 'Delete', @jrbook, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger btn-sm"%>
