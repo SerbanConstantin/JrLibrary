@@ -4,7 +4,7 @@ class JrbooksController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
   # GET /jrbooks or /jrbooks.json
   def index
-    @jrbooks = Jrbook.all
+    @pagy, @jrbooks = pagy(Jrbook.all)
   end
 
   # GET /jrbooks/1 or /jrbooks/1.json

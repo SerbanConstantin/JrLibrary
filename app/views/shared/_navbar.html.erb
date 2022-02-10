@@ -30,9 +30,9 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" >Books Views</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">2</a></li>
-            <li><a class="dropdown-item" href="#">5</a></li>
-            <li><a class="dropdown-item" href="#">10</a></li>
+            <%= link_to_unless_current "2", jrbooks_path(items: 2) %><br/>
+            <%= link_to_unless_current "5", jrbooks_path(items: 5) %><br/>
+            <%= link_to_unless_current "10", jrbooks_path(items: 10) %>
             
           </ul>
         </li>
